@@ -6,7 +6,7 @@
 	</ul>
 	<p>
 		<%= f.label :title %> <br/>
-		<%= f.text_field :title, :required => true  %>
+		<%= f.text_field :title, :required => true,:pattern => '[a-z0-9]{3,15}$'  %>
 	</p>
 	<p>
 		<%= f.label :body %><br>
@@ -14,14 +14,14 @@
 	</p>
 	<p>
 	  <%= f.label :tag_list %><br />
-	  <%= f.text_field :tag_list %>
+	  <%= f.text_field :tag_list, :required => true %>
 	</p>
 	<p>
 	  <% if @article.image.exists? %>
 	      <%= image_tag @article.image.url %><br/>
 	  <% end %>
 	  <%= f.label :image, "Attach a New Image" %><br />
-	  <%= f.file_field :image %>
+	  <%= f.file_field :image, :required => true %>
 	</p>
 	<p>
 		<%= f.submit %>

@@ -1,13 +1,13 @@
 class Article < ActiveRecord::Base
 	validates :title, presence: true,
-	length:{minimum: 5,:message => "Title must be greater than 10 characters"}
+	length:{minimum: 5,maximum:50,:message => " must be lie between 5-50 characters"}
 	validates :body, presence: true,
-	length:{minimum:10,:message => "Body must be greater than 10 characters"}
+	length:{minimum:10,maximum:200,:message => " must be lie between 10-200 characters"}
 	has_many :comments
 	has_many :taggings
 	has_many :tags, through: :taggings, dependent: :destroy
 	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
-	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+	validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"],:message => " must be lie between 5-20 characters"
 	def tag_list
 	  self.tags.collect do |tag|
 	    tag.name
